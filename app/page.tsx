@@ -8,8 +8,9 @@ import getCurrentUser from "./actions/getCurrentUser";
 
 export default async function Home() {
 
-  const listings = await getListings();
-  const currentUser = getCurrentUser();
+  let listings = await getListings();
+  if (listings === undefined) listings = [];
+  const currentUser = await getCurrentUser();
   if (listings?.length === 0) {
     return (
 
