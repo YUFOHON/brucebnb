@@ -211,21 +211,21 @@ const RentModal = () => {
                     title="Guests"
                     subtitle="How many guests do you allow?"
                 />
-                <hr class="border-purple-500" />
+                <hr className="border-purple-500" />
                 <Counter
                     onChange={(value) => setCustomValue('roomCount', value)}
                     value={roomCount}
                     title="Rooms"
                     subtitle="How many rooms do you have?"
                 />
-                <hr class="border-purple-500" />
+                <hr className="border-purple-500" />
                 <Counter
                     onChange={(value) => setCustomValue('bathroomCount', value)}
                     value={bathroomCount}
                     title="Bathrooms"
                     subtitle="How many bathrooms do you have?"
                 />
-                <hr class="border-purple-500" />
+                <hr className="border-purple-500" />
                 <Counter
                     onChange={(value) => setCustomValue('bedCount', value)}
                     value={bedCount}
