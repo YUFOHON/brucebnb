@@ -40,21 +40,22 @@ const RegisterModal = () => {
     }, [loginModal, RegisterModal])
 
 
-    const onSubmit: SubmitHandler<FieldValues> = useCallback(async (data) => {
+    const onSubmit: SubmitHandler<FieldValues> = (data) => {
         setIsLoading(true);
-        axios.post('/api/register', data)
-            .then((res) => {
-                registerModal.onClose();
 
+        axios.post('/api/register', data)
+            .then(() => {
+                toast.success('Registered!');
+                registerModal.onClose();
+                loginModal.onOpen();
             })
-            .catch((err) => {
-                toast.error("事情有些不對勁");
+            .catch((error) => {
+                toast.error(error);
             })
             .finally(() => {
                 setIsLoading(false);
             })
-
-    }, []);
+    }
 
 
     const bodyContent = (
