@@ -6,7 +6,7 @@ interface HeadingProps {
     center?: boolean;
 }
 
-const Heading: React.Fc<HeadingProps> = ({
+const Heading: React.FC<HeadingProps> = ({
     title,
     subtitle,
     center

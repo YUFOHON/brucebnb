@@ -9,7 +9,7 @@ import useCountries from "@/app/hooks/useCountries";
 import {
     SafeListing,
     SafeReservation,
-    SafeUser
+    // SafeUser
 } from "@/app/types";
 
 import HeartButton from "../HeartButton";
@@ -17,13 +17,16 @@ import Button from "../Button";
 import ClientOnly from "../ClientOnly";
 
 interface ListingCardProps {
-    data: SafeListing;
+    // data: SafeListing;
+    data: any;
     reservation?: SafeReservation;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
-    currentUser?: SafeUser | null
+    // currentUser?: SafeUser | null
+    currentUser?: any
+
 };
 
 const ListingCard: React.FC<ListingCardProps> = ({
