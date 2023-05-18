@@ -41,7 +41,7 @@ const Modal: React.FC<ModalProps> = ({
         const handleClickOutsideModal = (e: MouseEvent) => {
             if (
                 containerRef.current &&
-                !containerRef.current.contains(e.target as Node) &&
+                !(containerRef.current as HTMLElement)?.contains(e.target as Node) &&
                 !(e.target as HTMLElement).classList.contains('modal-exception')
             ) {
                 console.log('click outside modal');
