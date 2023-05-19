@@ -9,7 +9,8 @@ import useLoginModal from "./useLoginModal";
 
 interface IUseFavorite {
     listingId: string;
-    currentUser?: SafeUser | null
+    // currentUser?: SafeUser | null
+    currentUser?: any;
 }
 
 const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
