@@ -9,6 +9,7 @@ import useLoginModal from "@/app/hooks/useLoginModal";
 import { signOut } from 'next-auth/react'
 import { SafeUser } from "@/app/types";
 import useRentModal from "@/app/hooks/useRentModal";
+import { useRouter } from "next/navigation";
 interface UserMenuProps {
     currentUser?: SafeUser | null
 }
@@ -17,6 +18,7 @@ const UserMenu: React.FC<UserMenuProps> = (
     { currentUser }
 
 ) => {
+    const router = useRouter();
     const [isOpen, setIsOpen] = useState(false);
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
@@ -25,7 +27,6 @@ const UserMenu: React.FC<UserMenuProps> = (
         setIsOpen((value) => !value);
     }, []);
 
-    console.log(currentUser)
     const onRent = useCallback(() => {
         if (!currentUser) {
             loginModal.onOpen();
@@ -70,7 +71,12 @@ const UserMenu: React.FC<UserMenuProps> = (
             {isOpen && (
                 <div className="absolute rounded-xl shadow-md w-[40vw] md:w-3/4 bg-white overflow-hidden right-0 top-12 text-sm">
                     <div className="flex flex-col cursor-pointer">
-
+                        <MenuItem onClick={
+                            () => router.push("/")
+                        }
+                            label="Home"
+                            className="modal-exception"
+                        /><hr />
                         {/* <>
                             <MenuItem onClick={loginModal.onOpen} label="Login" className="modal-exception" />
                             <MenuItem
@@ -82,26 +88,31 @@ const UserMenu: React.FC<UserMenuProps> = (
 
                         {currentUser ? (
                             <>
-                                <MenuItem onClick={loginModal.onOpen}
+
+                                <MenuItem onClick={
+                                    () => router.push("/trips")
+                                }
                                     label="My trips"
                                     className="modal-exception"
                                 />
                                 <hr />
                                 <MenuItem
                                     label="My favorites"
-                                    onClick={registerModal.onOpen}
+                                    onClick={() => router.push('/favorites')}
                                     className="modal-exception"
                                 />
                                 <hr />
                                 <MenuItem
                                     label="My reservations"
-                                    onClick={registerModal.onOpen}
+                                    onClick={
+                                        () => router.push("/reservation")
+                                    }
                                     className="modal-exception"
                                 />
                                 <hr />
                                 <MenuItem
                                     label="My properties"
-                                    onClick={registerModal.onOpen}
+                                    onClick={() => router.push("/properties")}
                                     className="modal-exception"
                                 />
                                 <hr />
@@ -114,7 +125,12 @@ const UserMenu: React.FC<UserMenuProps> = (
                                 <hr />
                                 <MenuItem
                                     label="signOut"
-                                    onClick={() => signOut()}
+                                    onClick={() => {
+                                        signOut()
+                                        router.push("/")
+                                    }
+
+                                    }
                                     className="modal-exception"
                                 />
                             </>

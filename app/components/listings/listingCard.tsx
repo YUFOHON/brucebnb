@@ -10,14 +10,12 @@ import {
     SafeListing,
     SafeReservation,
     SafeUser,
-    // SafeUser
 } from "@/app/types";
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
-import { get } from "http";
-
+import { format } from 'date-fns'
 interface ListingCardProps {
     data: SafeListing;
     // data: any;
@@ -72,7 +70,7 @@ const ListingCard: React.FC<ListingCardProps> = ({
         const start = new Date(reservation.startDate);
         const end = new Date(reservation.endDate);
 
-        // return `${format(start, 'PP')} - ${format(end, 'PP')}`;
+        return `${format(start, 'PP')} - ${format(end, 'PP')}`;
     }, [reservation]);
 
     // get the owner's data of the listing

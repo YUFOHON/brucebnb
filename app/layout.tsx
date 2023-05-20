@@ -9,6 +9,7 @@ import LoginModal from './components/Modal/LoginModal';
 import getCurrentUser from "@/app/actions/getCurrentUser";
 import RentModal from './components/Modal/RentModal';
 import { User } from '@prisma/client';
+import SearchModal from './components/Modal/SearchModal';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
@@ -31,6 +32,7 @@ export default async function RootLayout({
       <body className={font.className}>
 
         <ClientOnly>
+          <SearchModal />
           <RentModal />
           <RegisterModal />
           <LoginModal />
