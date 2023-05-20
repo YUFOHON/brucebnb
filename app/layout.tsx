@@ -6,8 +6,9 @@ import ClientOnly from './components/ClientOnly';
 import RegisterModal from './components/Modal/RegisterModal';
 import ToasterProvider from './providers/ToasterProvider';
 import LoginModal from './components/Modal/LoginModal';
-import getCurrentUser from './actions/getCurrentUser';
+import getCurrentUser from "@/app/actions/getCurrentUser";
 import RentModal from './components/Modal/RentModal';
+import { User } from '@prisma/client';
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {

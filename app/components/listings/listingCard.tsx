@@ -2,30 +2,32 @@
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { use, useCallback, useEffect, useMemo } from "react";
 // import { format } from 'date-fns';
 
 import useCountries from "@/app/hooks/useCountries";
 import {
     SafeListing,
     SafeReservation,
+    SafeUser,
     // SafeUser
 } from "@/app/types";
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
 import ClientOnly from "../ClientOnly";
+import { get } from "http";
 
 interface ListingCardProps {
-    // data: SafeListing;
-    data: any;
+    data: SafeListing;
+    // data: any;
     reservation?: SafeReservation;
     onAction?: (id: string) => void;
     disabled?: boolean;
     actionLabel?: string;
     actionId?: string;
-    // currentUser?: SafeUser | null
-    currentUser?: any
+    currentUser?: SafeUser | null
+    // currentUser?: any
 
 };
 
@@ -73,10 +75,20 @@ const ListingCard: React.FC<ListingCardProps> = ({
         // return `${format(start, 'PP')} - ${format(end, 'PP')}`;
     }, [reservation]);
 
+    // get the owner's data of the listing
+
+
+    const isOwner = useMemo(() => {
+        if (currentUser?.id === data.userId) {
+            return true;
+        }
+    }, [currentUser?.id, data.userId]);
+
+
     return (
         <div
             onClick={() => {
-                // router.push(`/listings/${data.id}`)
+                router.push(`/listings/${data.id}`)
             }}
             className="col-span-1 cursor-pointer group"
         >
@@ -102,15 +114,49 @@ const ListingCard: React.FC<ListingCardProps> = ({
                         src={data.imageSrc}
                         alt="Listing"
                     />
+
+                    {data.ownerImg && (
+
+
+                        <div className="
+absolute
+bottom-2 left-2 ">
+                            <Image
+                                width={76}
+                                height={76}
+                                className="
+        
+        relative
+hover:scale-110 
+transition
+rounded-md
+
+border-2
+
+"
+                                src={data.ownerImg}
+                                alt="Owner"
+                            /></div>
+
+                    )
+
+
+                    }
+
+
                     <div className="
             absolute
             top-3
             right-3
           ">
-                        <HeartButton
+
+                        {!isOwner && (<HeartButton
                             listingId={data.id}
                             currentUser={currentUser}
-                        />
+                        />)}
+
+
+
                     </div>
                 </div>
                 <div className="font-semibold text-lg text-center">

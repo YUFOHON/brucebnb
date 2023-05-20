@@ -3,7 +3,8 @@ import ClientOnly from "./components/ClientOnly";
 import EmptyState from "./components/Emptystate";
 import getListings from "./actions/getListing";
 import ListingCard from "./components/listings/listingCard";
-import getCurrentUser from "./actions/getCurrentUser";
+import getCurrentUser from "@/app/actions/getCurrentUser";
+
 
 
 export default async function Home() {

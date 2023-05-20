@@ -25,6 +25,7 @@ const UserMenu: React.FC<UserMenuProps> = (
         setIsOpen((value) => !value);
     }, []);
 
+    console.log(currentUser)
     const onRent = useCallback(() => {
         if (!currentUser) {
             loginModal.onOpen();

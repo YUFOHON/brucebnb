@@ -38,7 +38,6 @@ const RentModal = () => {
 
     const [isLoading, setIsLoading] = useState(false);
     const [step, setStep] = useState(STEPS.CATEGORY);
-    console.log(step);
     const onBack = () => {
         setStep((value) => value - 1);
 

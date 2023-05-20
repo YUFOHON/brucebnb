@@ -9,8 +9,8 @@ import useLoginModal from "./useLoginModal";
 
 interface IUseFavorite {
     listingId: string;
-    // currentUser?: SafeUser | null
-    currentUser?: any;
+    currentUser?: SafeUser | null
+    // currentUser?: any;
 }
 
 const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
@@ -19,7 +19,7 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
     const loginModal = useLoginModal();
 
     const hasFavorited = useMemo(() => {
-        const list = currentUser?.favoriteIds || [];
+        const list = currentUser?.favoritedIds || [];
 
         return list.includes(listingId);
     }, [currentUser, listingId]);
@@ -32,19 +32,22 @@ const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
         }
 
         try {
-            let request;
 
             if (hasFavorited) {
-                request = () => axios.delete(`/api/favorites/${listingId}`);
+
+                await axios.delete(`/api/favorites/${listingId}`);
+                toast.success('removed from favorites');
             } else {
-                request = () => axios.post(`/api/favorites/${listingId}`);
+
+                await axios.post(`/api/favorites/${listingId}`);
+                toast.success('added to favorites');
             }
 
-            await request();
+            // await request();
             router.refresh();
-            toast.success('Success');
+
         } catch (error) {
-            toast.error('Something went wrong.');
+            toast.error('Operation fail.');
         }
     },
         [

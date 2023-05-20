@@ -25,6 +25,7 @@ export async function POST(
         guestCount,
         location,
         price,
+
     } = body;
 
 
@@ -40,7 +41,8 @@ export async function POST(
             guestCount,
             locationValue: location.value,
             price: parseInt(price, 10),
-            userId: currentUser.id
+            userId: currentUser.id,
+            ownerImg: currentUser.image || "https://www.google.com/url?sa=i&url=https%3A%2F%2Fen.gravatar.com%2Fsite%2Fimplement%2Fimages%2F&psig=AOvVaw0ceqFVhvVq86iVGSXSyfFA&ust=1684634274197000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCKjysv3kgv8CFQAAAAAdAAAAABAE",
         }
     });
 

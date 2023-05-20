@@ -1,4 +1,5 @@
 'use client'
+import { User } from "@prisma/client";
 // import { User } from "@prisma/client";
 import Container from "../Container";
 import Categories from "./Categories";
@@ -8,8 +9,8 @@ import UserMenu from "./UserMenu";
 import { SafeUser } from "@/app/types";
 
 interface NavbarProps {
-    // currentUser?: SafeUser | null
-    currentUser?: any
+    currentUser?: SafeUser | null
+    // currentUser?: User | null
 
 }
 

@@ -20,14 +20,15 @@ export default async function getCurrentUser() {
                 email: session.user.email as string,
             }
         });
+
         if (!currentUser) {
             return null;
         }
 
         return {
             ...currentUser,
-            createdAt: currentUser.createdAt?.toISOString() || null,
-            updatedAt: currentUser.updatedAt?.toISOString() || null,
+            createdAt: currentUser.createdAt?.toISOString()|| null,
+            updatedAt: currentUser.updatedAt?.toISOString()|| null,
             emailVerified:
                 currentUser.emailVerified?.toISOString() || null,
         };

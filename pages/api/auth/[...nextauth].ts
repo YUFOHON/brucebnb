@@ -34,11 +34,11 @@ export const authOptions: AuthOptions = {
             email: credentials.email
           }
         });
-
+        console.log("1");
         if (!user || !user?.hashedPassword) {
           throw new Error('Invalid credentials');
         }
-
+        console.log("2");
         const isCorrectPassword = await bcrypt.compare(
           credentials.password,
           user.hashedPassword
@@ -47,7 +47,7 @@ export const authOptions: AuthOptions = {
         if (!isCorrectPassword) {
           throw new Error('Invalid credentials');
         }
-
+        console.log("3");
         return user;
       }
     })
